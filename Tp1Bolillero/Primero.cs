@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace Tp1Bolillero
 {
-    public interface Primero
+    public class Primero : IAzar
     {
-        byte SacarBolilla( List<byte> bolillas);
+        public byte SacarBolilla(List<byte> bolillas)
+        {
+            return bolillas[0];
+        }
     }
 }
