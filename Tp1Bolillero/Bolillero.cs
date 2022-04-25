@@ -16,12 +16,30 @@ namespace Tp1Bolillero
             Afuera = new List<byte>();
             CrearBolilla(cantidad);
         }
-        public void CrearBolilla(byte bolillas)
+        private void CrearBolilla(byte bolillas)
         {
             for (byte i = 0; i < bolillas; i++)
             {
                 Adentro.Add(i);
             }
+        }
+        public void ReIngresar ()
+        {
+            Adentro.AddRange(Afuera);
+            Afuera.Clear();
+        }
+        public byte SacarBolilla()
+        {
+            Aleatorio aleatorio = new Aleatorio();
+            aleatorio.SacarBolilla(Adentro);
+        }
+        public bool Jugar(List<byte> bolillas)
+        {
+
+        }
+        public long JugarN (List<byte> bolillas)
+        {
+
         }
     }
 }
