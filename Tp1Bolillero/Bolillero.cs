@@ -9,15 +9,19 @@ namespace Tp1Bolillero
         public List<byte> Afuera { get; set; }
         public IAzar Azar { get; set; }
 
-        public Bolillero(IAzar azar, byte cantidad)
+        public Bolillero ()
         {
-            Azar = azar;
-            Adentro = new List<byte>();
-            Afuera = new List<byte>();
+
+        }
+
+        public Bolillero( byte cantidad)
+        {
             CrearBolilla(cantidad);
         }
         private void CrearBolilla(byte bolillas)
         {
+            Adentro = new List<byte>();
+             Afuera = new List<byte>();
             for (byte i = 0; i < bolillas; i++)
             {
                 Adentro.Add(i);
@@ -30,8 +34,8 @@ namespace Tp1Bolillero
         }
         public byte SacarBolilla()
         {
-            Aleatorio aleatorio = new Aleatorio();
-            aleatorio.SacarBolilla(Adentro);
+            byte bolillas = Azar.SacarBolilla(Adentro);
+             
         }
         public bool Jugar(List<byte> bolillas)
         {
