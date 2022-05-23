@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
+
+
 namespace Tp2Bolillero
 {
     public class Simulacion
     {
-        private long simularHilos(List<byte>bolillas,int cantidad, int jugada);
-        public void bolillas()
+        private long simularHilos(Bolillero bolillero, List<byte>bolillas,int cantidad, int jugada)
+
         {
             for (int i = 0; i < bolillas.Count; i++)
             {
@@ -11,10 +15,12 @@ namespace Tp2Bolillero
                 return true;
             }
             return false;
+
         }
+
         public void cantidad()
         {
-
+            
         }
         public bool Jugar(List<byte> bolillas);
 
