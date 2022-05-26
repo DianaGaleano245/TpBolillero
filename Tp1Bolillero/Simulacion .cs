@@ -4,18 +4,25 @@ using System.Threading.Tasks;
 
 namespace Tp1Bolillero
 {
-    public class Simulacion 
+    public class Simulacion
     {
-        private long simularHilos(Bolillero bolillero, List<byte>jugada,int cantidad)
+        private long simularSinHilos(Bolillero bolillero, List<byte> jugada, long cantidad)
         {
-            return bolillero.JugarN(jugada,cantidad);
+            return bolillero.JugarN(jugada, cantidad);
         }
-        private long simularConHilos(Bolillero bolillero, List<byte>jugada,long cantidadSimulaciones, long cantidadHilos)
+        private long simularConHilos(Bolillero bolillero, List<byte> jugada, long cantidadSimulaciones, long cantidadHilos)
         {
-            var tareas  = new Task<long>[cantidadHilos];
+            long cantidadporhilos = cantidadSimulaciones/cantidadHilos;
+            var tareas = new Task<long>[cantidadHilos];
             for (int i = 0; i < cantidadSimulaciones; i++)
             {
-                Bolillero bolilleroClone = bolillero.Clone();
+                for (int a = 0; a < cantidadHilos; a++)
+                {
+                    Bolillero bolilleroClone = (Bolillero)bolillero.Clone();
+                tareas[i] = Task.Run(() => simularSinHilos(bolillero, jugada, cantidadSimulaciones));
+                }
+                Bolillero bolilleroClone = (Bolillero)bolillero.Clone();
+                tareas[i] = Task.Run(() => simularSinHilos(bolillero, jugada, cantidadSimulaciones));
             }
 
         }

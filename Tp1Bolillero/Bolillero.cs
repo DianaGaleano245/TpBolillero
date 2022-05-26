@@ -52,7 +52,7 @@ namespace Tp1Bolillero
             }
             return false;
         }
-        public long JugarN(List<byte> bolillas, int cantidad)
+        public long JugarN(List<byte> bolillas, long cantidad)
         {
             long contador = 0;
             for (int i = 0; i < cantidad; i++)
