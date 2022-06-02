@@ -16,16 +16,9 @@ namespace Tp1Bolillero
             var tareas = new Task<long>[cantidadHilos];
             for (int i = 0; i < cantidadSimulaciones; i++)
             {
-                for (int a = 0; a < cantidadHilos; a++)
-                {
-                    Bolillero bolilleroClone = (Bolillero)bolillero.Clone();
-                tareas[i] = Task.Run(() => simularSinHilos(bolillero, jugada, cantidadSimulaciones));
-                }
-                Bolillero bolilleroClone = (Bolillero)bolillero.Clone();
-                tareas[i] = Task.Run(() => simularSinHilos(bolillero, jugada, cantidadSimulaciones));
+                Bolillero clon = (Bolillero)bolillero.Clone();
+                tareas[i] = Task.Run(() => simularSinHilos(clon, jugada, cantidadSimulaciones));
             }
-
         }
-
     }
 }
