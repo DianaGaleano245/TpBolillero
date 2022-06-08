@@ -3,19 +3,24 @@ using System.Collections.Generic;
 
 namespace Tp1Bolillero
 {
-    public class Bolillero
+    public class Bolillero : ICloneable
     {
         public List<byte> Adentro { get; set; }
         public List<byte> Afuera { get; set; }
+        public Bolillero(IAzar azar)
+        {
+            this.Azar = azar;
+
+        }
         public IAzar Azar { get; set; }
 
-        public Bolillero ()
+        public Bolillero()
         {
             Adentro = new List<byte>();
             Afuera = new List<byte>();
         }
 
-        public Bolillero( byte cantidad)
+        public Bolillero(byte cantidad)
         {
             CrearBolilla(cantidad);
         }
@@ -26,7 +31,7 @@ namespace Tp1Bolillero
                 Adentro.Add(i);
             }
         }
-        public void ReIngresar ()
+        public void ReIngresar()
         {
             Adentro.AddRange(Afuera);
             Afuera.Clear();
@@ -42,21 +47,26 @@ namespace Tp1Bolillero
         {
             for (int i = 0; i < bolillas.Count; i++)
             {
-            if(SacarBolilla() == bolillas[i])
-                return true;
+                if (SacarBolilla() == bolillas[i])
+                    return true;
             }
             return false;
         }
-        public long JugarN (List<byte> bolillas,int cantidad)
+        public long JugarN(List<byte> bolillas, long cantidad)
         {
-            long contador =0;
+            long contador = 0;
             for (int i = 0; i < cantidad; i++)
             {
-                if(Jugar(bolillas))
-                contador ++;
+                if (Jugar(bolillas))
+                    contador++;
                 ReIngresar();
             }
             return contador;
+        }
+
+        public object Clone()
+        {
+            return Clone ();
         }
     }
 }

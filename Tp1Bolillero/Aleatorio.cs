@@ -10,7 +10,7 @@ namespace Tp1Bolillero
         public override global::System.Boolean Equals(global::System.Object obj)
         {
             return obj is Aleatorio aleatorio &&
-                   EqualityComparer<Random>.Default.Equals(r, aleatorio.r);
+                    EqualityComparer<Random>.Default.Equals(r, aleatorio.r);
         }
 
         public byte SacarBolilla(List<byte> bolillas) 
