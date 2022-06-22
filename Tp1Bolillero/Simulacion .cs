@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Tp1Bolillero
@@ -12,16 +13,22 @@ namespace Tp1Bolillero
         }
         private long simularConHilos(Bolillero bolillero, List<byte> jugada, long cantidadSimulaciones, long cantidadporHilos)
         {
-            long cantidadporhilos = cantidadSimulaciones/cantidadHilos;
+            long cantidadporhilos = cantidadSimulaciones / cantidadporHilos;
             var tareas = new Task<long>[cantidadSimulaciones];
-            for (int i = 0; i < cantidadporHilos; i++)
+            for (long i = 0; i < cantidadporHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
                 tareas[i] = Task.Run(() => simularSinHilos(clon, jugada, cantidadSimulaciones));
             }
-            Task<int>.WaitAll(cantidadporHilos);
-            return tareas.Sum(i => { 
-        }); 
+            Task<long>.WaitAll(tareas);
+            return tareas.Sum(i => i.Result);
         }
+
+        public async Task<long> SimularConHilosAsync()
+        {
+            //llego nuestra hora de morir chan chan chaaaaan
+            // lalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalala
+        }
+
     }
 }
