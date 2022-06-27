@@ -26,8 +26,15 @@ namespace Tp1Bolillero
 
         public async Task<long> SimularConHilosAsync()
         {
-            //llego nuestra hora de morir chan chan chaaaaan
-            // lalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalala
+            long cantidadporhilos = cantidadSimulaciones / cantidadporHilos;
+            var tareas = new Task<long>[cantidadSimulaciones];
+            for (long i = 0; i < cantidadporHilos; i++)
+            {
+                Bolillero clon = (Bolillero)bolillero.Clone();
+                tareas[i] = Task.Run(() => simularSinHilos(clon, jugada, cantidadSimulaciones));
+            }
+            await Task<long>.WhenAll(tareas);
+            return tareas.Sum(i => i.Result);
         }
 
     }
